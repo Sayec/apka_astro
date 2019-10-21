@@ -11,6 +11,8 @@
         <TextBox x:Name="Event_Name" HorizontalAlignment="Left" Height="59" Margin="267,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="164"/>
         <Button Content="Dodaj wydarzenie" HorizontalAlignment="Left" Margin="41,279,0,0" VerticalAlignment="Top" Width="124" Click="Button_Click_1" Height="69"/>
         <Label Content="Opis wydarzenia" HorizontalAlignment="Left" Margin="279,58,0,0" VerticalAlignment="Top" Height="27" Width="137"/>
+        <TextBox x:Name="Event_Hours" HorizontalAlignment="Left" Height="23" Margin="73,168,0,0" TextWrapping="Wrap" Text="Wpisz godzine" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="Event_Minutes" HorizontalAlignment="Left" Height="23" Margin="73,211,0,0" TextWrapping="Wrap" Text="Wpisz minuty" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </Window>

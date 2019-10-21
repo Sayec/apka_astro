@@ -7,13 +7,12 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="478,208,0,0" TextWrapping="Wrap" Text="{Binding SelectedItem.Date, ElementName=List_Events}" VerticalAlignment="Top" Width="120"/>
-        <ListBox x:Name="List_Events" ItemsSource="{Binding Events}" DisplayMemberPath="Name" SelectedValuePath="Name" HorizontalAlignment="Left" Height="100" Margin="139,208,0,0" VerticalAlignment="Top" Width="100"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="164,318,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="345,63,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
-        <DatePicker x:Name="Event_Date" HorizontalAlignment="Left" Margin="69,116,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="Event_Name" HorizontalAlignment="Left" Height="23" Margin="69,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="636,63,0,0" VerticalAlignment="Top" Width="116" Height="59" Click="Button_Click_2"/>
+        <TextBox x:Name="TextBox1" HorizontalAlignment="Left" Height="42" Margin="308,318,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="142" />
+        <ListBox x:Name="List_Events" ItemsSource="{Binding Events}" MouseDoubleClick="List_Events_MouseDoubleClick" DisplayMemberPath="Name" SelectedValuePath="Name" HorizontalAlignment="Left" Height="257" Margin="85,51,0,0" VerticalAlignment="Top" Width="154" SelectionChanged="List_Events_SelectionChanged"/>
+        <Button Content="Wyswietl czas" HorizontalAlignment="Left" Margin="159,318,0,0" VerticalAlignment="Top" Width="80" Click="Button_Click"/>
+        <Button Content="Dodaj wydarzenie" HorizontalAlignment="Left" Margin="464,51,0,0" VerticalAlignment="Top" Width="116" Height="59" Click="Button_Click_2"/>
+        <Button Content="Usun" HorizontalAlignment="Left" Margin="79,318,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_3"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="502,220,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_4"/>
 
     </Grid>
 </Window>

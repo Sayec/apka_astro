@@ -28,9 +28,12 @@ namespace WpfApp1
         {
             Event temp = new Event();
             temp.Name = Event_Name.Text;
-            temp.Date = DateTime.Parse(Event_Date.ToString());
+            int u = Event_Date.SelectedDate.Value.Day;
+            temp.Date = DateTime.Parse(Event_Date.SelectedDate.Value.Day.ToString()+"/"+ Event_Date.SelectedDate.Value.Month.ToString() +"/" + Event_Date.SelectedDate.Value.Year.ToString() + "  " + Event_Hours.Text + ":" + Event_Minutes.Text);
+
             // MainWindow test = new MainWindow();
             MainWindow.Events.Add(temp);
+            this.Close();
            // MainWindow.List_Events.Items.Refresh();
         }
 
