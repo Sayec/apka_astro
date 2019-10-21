@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
+using Microsoft.Win32;
 
 
 namespace WpfApp1
@@ -23,7 +24,7 @@ namespace WpfApp1
         {
             InitializeComponent();
             DataContext = this;
-            Events = new List<Event> {};
+            Events = new List<Event> { };
             string path = @"e:\repos\WpfApp1\WpfApp1\events.txt";
             StreamReader sr = new StreamReader(path);
             string s;
@@ -40,9 +41,9 @@ namespace WpfApp1
                 {
                     tmp.Date = DateTime.Parse(s);
                 }
-                else if (i%3==2)
+                else if (i % 3 == 2)
                 {
-                    Events.Add( new Event { Name = tmp.Name, Date = tmp.Date });
+                    Events.Add(new Event { Name = tmp.Name, Date = tmp.Date });
                 }
                 i++;
             } while (s != null);
@@ -120,7 +121,7 @@ namespace WpfApp1
             {
                 int i = List_Events.SelectedIndex;
 
-                MessageBox.Show(Events[i].Date.ToString("dd/MM/yyyy H:mm"));
+                MessageBox.Show(Events[i].Date.ToString("dd/MM/yyyy HH:mm:ss"));
                 //MessageBox.Show(List_Events.SelectedItem.ToString());
             }
         }
@@ -129,7 +130,7 @@ namespace WpfApp1
             if (List_Events.SelectedItem != null)
             {
                 int i = List_Events.SelectedIndex;
-                TextBox1.Text = Events[i].Date.ToString("dd/MM/yyyy H:mm");
+                TextBox1.Text = Events[i].Date.ToString("dd/MM/yyyy HH:mm:ss");
             }
             else
             {
@@ -149,9 +150,50 @@ namespace WpfApp1
             List_Events.Items.Refresh();
         }
 
-        private void Gen_Ical_Click(object sender, RoutedEventArgs e)
+        private void Gen_ICal_Click(object sender, RoutedEventArgs e)
         {
+            int i = List_Events.SelectedIndex;
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.Filter = "iCalendar (*.ics)|*.ics";
+            saveFileDialog1.ShowDialog();
+            StreamWriter iCal = new StreamWriter(saveFileDialog1.FileName);
+            iCal.Write("BEGIN:VCALENDAR\n");
+            iCal.Write("VERSION:2.0\n");
+            iCal.Write("PRODID:Kamil\n");
+            iCal.Write("X - WR - TIMEZONE:Europe / Warsaw\n");
+            iCal.Write("BEGIN:VEVENT\n");
+            iCal.Write("DTSTART:" + Events[i].Date.Year.ToString("0000") + Events[i].Date.Month.ToString("00") + Events[i].Date.Day.ToString("00") + "T"
+                + (Events[i].Date.Hour-1).ToString("00") + Events[i].Date.Minute.ToString("00") + Events[i].Date.Second.ToString("00") + "Z\n");
+            iCal.Write("DTEND:" + Events[i].Date.Year.ToString("0000") + Events[i].Date.Month.ToString("00") + Events[i].Date.Day.ToString("00") + "T"
+                + (Events[i].Date.Hour-1).ToString("00") + (Events[i].Date.Minute + 5).ToString("00") + Events[i].Date.Second.ToString("00") + "Z\n");
+            iCal.Write("SUMMARY:" + Events[i].Name+"\n");
+            iCal.Write("END:VEVENT\n");
+            iCal.Write("END:VCALENDAR\n");
+            iCal.Close();
+        }
 
+        private void Gen_ICal__All_Click(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.Filter = "iCalendar (*.ics)|*.ics";
+            saveFileDialog1.ShowDialog();
+            StreamWriter iCal = new StreamWriter(saveFileDialog1.FileName);
+            iCal.Write("BEGIN:VCALENDAR\n");
+            iCal.Write("VERSION:2.0\n");
+            iCal.Write("PRODID:Kamil\n");
+            iCal.Write("X - WR - TIMEZONE:Europe / Warsaw\n");
+            for (int j = 0; j < Events.Count; j++)
+            {
+                iCal.Write("BEGIN:VEVENT\n");
+                iCal.Write("DTSTART:" + Events[j].Date.Year.ToString("0000") + Events[j].Date.Month.ToString("00") + Events[j].Date.Day.ToString("00") + "T"
+                    + (Events[j].Date.Hour - 1).ToString("00") + Events[j].Date.Minute.ToString("00") + Events[j].Date.Second.ToString("00") + "Z\n");
+                iCal.Write("DTEND:" + Events[j].Date.Year.ToString("0000") + Events[j].Date.Month.ToString("00") + Events[j].Date.Day.ToString("00") + "T"
+                    + (Events[j].Date.Hour - 1).ToString("00") + (Events[j].Date.Minute + 5).ToString("00") + Events[j].Date.Second.ToString("00") + "Z\n");
+                iCal.Write("SUMMARY:" + Events[j].Name + "\n");
+                iCal.Write("END:VEVENT\n");
+            }
+            iCal.Write("END:VCALENDAR\n");
+            iCal.Close();
         }
     }
 

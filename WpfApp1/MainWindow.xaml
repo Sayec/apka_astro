@@ -13,7 +13,8 @@
         <Button Content="Dodaj wydarzenie" HorizontalAlignment="Left" Margin="464,51,0,0" VerticalAlignment="Top" Width="116" Height="59" Click="Add_Event_Click"/>
         <Button x:Name="Delete_Event" Content="Usun" HorizontalAlignment="Left" Margin="79,318,0,0" VerticalAlignment="Top" Width="75" Click="Delete_Event_Click"/>
         <Button Content="Sort" HorizontalAlignment="Left" Margin="502,220,0,0" VerticalAlignment="Top" Width="75" Click="Sort_Events_Click"/>
-        <Button Content="Generuj iCalendar" HorizontalAlignment="Left" Margin="318,166,0,0" VerticalAlignment="Top" Width="75" Click="Gen_ICal_Click"/>
+        <Button Content="Generuj iCalendar wybranego" HorizontalAlignment="Left" Margin="264,168,0,0" VerticalAlignment="Top" Width="163" Click="Gen_ICal_Click" Height="31"/>
+        <Button Content="Generuj iCalendar calosci" HorizontalAlignment="Left" Margin="264,247,0,0" VerticalAlignment="Top" Width="163" Click="Gen_ICal__All_Click" Height="32"/>
 
     </Grid>
 </Window>
