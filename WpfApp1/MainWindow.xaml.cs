@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
 
 
 namespace WpfApp1
@@ -22,17 +23,52 @@ namespace WpfApp1
         {
             InitializeComponent();
             DataContext = this;
-            Events = new List<Event> 
-         {
-            new Event { Name = "Event 1", Date = DateTime.Parse("5/1/2008 10:20")},
-            new Event { Name = "Event 2", Date = DateTime.Parse("5/5/2025 ")},
-            new Event { Name = "Event 3", Date = DateTime.Parse("5/10/2020 ")},
-            new Event { Name = "Event 4", Date = DateTime.Parse("17/1/2018 ")},
-         };
-
+            Events = new List<Event> {};
+            string path = @"e:\repos\WpfApp1\WpfApp1\events.txt";
+            StreamReader sr = new StreamReader(path);
+            string s;
+            Event tmp = new Event();
+            int i = 0;
+            do
+            {
+                s = sr.ReadLine();
+                if (i % 3 == 0)
+                {
+                    tmp.Name = s;
+                }
+                else if (i % 3 == 1)
+                {
+                    tmp.Date = DateTime.Parse(s);
+                }
+                else if (i%3==2)
+                {
+                    Events.Add( new Event { Name = tmp.Name, Date = tmp.Date });
+                }
+                i++;
+            } while (s != null);
+            sr.Close();
         }
 
+        static public bool isFileEmpty_bool=false;
 
+        static public bool isFileEmpty()
+        {
+            string path = @"e:\repos\WpfApp1\WpfApp1\events.txt";
+            StringBuilder sb = new StringBuilder();
+            StreamReader sr = new StreamReader(path);
+            string s;
+            s = sr.ReadLine();
+            sr.Close();
+            if (s == null)
+            {
+                isFileEmpty_bool = true;
+            }
+            else
+            {
+                isFileEmpty_bool = false;
+            }
+            return isFileEmpty_bool;
+        }
         static public List<Event> Events { get; set; }
         
         private void Sortowanie_Events()
@@ -71,7 +107,7 @@ namespace WpfApp1
             List_Events.Items.Refresh();
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void Add_Event_Click(object sender, RoutedEventArgs e)
         {
             Window1 okno = new Window1();
             okno.ShowDialog();
@@ -100,20 +136,23 @@ namespace WpfApp1
                 TextBox1.Text = "Wybierz wydarzenie, aby wyswietlic date";
             }
         }
-        private void Button_Click_3(object sender, RoutedEventArgs e)
+        private void Delete_Event_Click(object sender, RoutedEventArgs e)
         {
             int i = List_Events.SelectedIndex;
             Events.RemoveAt(i);
             List_Events.Items.Refresh();
         }
 
-        private void Button_Click_4(object sender, RoutedEventArgs e)
+        private void Sort_Events_Click(object sender, RoutedEventArgs e)
         {
             Sortowanie_Events();
             List_Events.Items.Refresh();
         }
 
+        private void Gen_Ical_Click(object sender, RoutedEventArgs e)
+        {
 
+        }
     }
 
     public class Event

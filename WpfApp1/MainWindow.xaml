@@ -10,9 +10,10 @@
         <TextBox x:Name="TextBox1" HorizontalAlignment="Left" Height="42" Margin="308,318,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="142" />
         <ListBox x:Name="List_Events" ItemsSource="{Binding Events}" MouseDoubleClick="List_Events_MouseDoubleClick" DisplayMemberPath="Name" SelectedValuePath="Name" HorizontalAlignment="Left" Height="257" Margin="85,51,0,0" VerticalAlignment="Top" Width="154" SelectionChanged="List_Events_SelectionChanged"/>
         <Button Content="Wyswietl czas" HorizontalAlignment="Left" Margin="159,318,0,0" VerticalAlignment="Top" Width="80" Click="Button_Click"/>
-        <Button Content="Dodaj wydarzenie" HorizontalAlignment="Left" Margin="464,51,0,0" VerticalAlignment="Top" Width="116" Height="59" Click="Button_Click_2"/>
-        <Button Content="Usun" HorizontalAlignment="Left" Margin="79,318,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_3"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="502,220,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_4"/>
+        <Button Content="Dodaj wydarzenie" HorizontalAlignment="Left" Margin="464,51,0,0" VerticalAlignment="Top" Width="116" Height="59" Click="Add_Event_Click"/>
+        <Button x:Name="Delete_Event" Content="Usun" HorizontalAlignment="Left" Margin="79,318,0,0" VerticalAlignment="Top" Width="75" Click="Delete_Event_Click"/>
+        <Button Content="Sort" HorizontalAlignment="Left" Margin="502,220,0,0" VerticalAlignment="Top" Width="75" Click="Sort_Events_Click"/>
+        <Button Content="Generuj iCalendar" HorizontalAlignment="Left" Margin="318,166,0,0" VerticalAlignment="Top" Width="75" Click="Gen_ICal_Click"/>
 
     </Grid>
 </Window>

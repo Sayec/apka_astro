@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.IO;
 
 namespace WpfApp1
 {
@@ -33,6 +34,16 @@ namespace WpfApp1
 
             // MainWindow test = new MainWindow();
             MainWindow.Events.Add(temp);
+            bool file_empty= MainWindow.isFileEmpty();
+            string path = @"e:\repos\WpfApp1\WpfApp1\events.txt";
+            StreamWriter sw = new StreamWriter(path,true);
+            if (!file_empty)
+            {
+                sw.Write("? \n");
+            }    
+            sw.WriteLine(temp.Name);
+            sw.WriteLine(temp.Date);
+            sw.Close();
             this.Close();
            // MainWindow.List_Events.Items.Refresh();
         }
