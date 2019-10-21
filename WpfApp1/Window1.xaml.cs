@@ -37,5 +37,23 @@ namespace WpfApp1
            // MainWindow.List_Events.Items.Refresh();
         }
 
+        bool firstTime = true;
+        private void Event_Minutes_GotKeyboardFocus(object sender, EventArgs e)
+        {
+            if (firstTime)
+            {
+                firstTime = false;
+                Event_Minutes.Clear();
+            }
+        }
+        bool firstTime1 = true;
+        private void Event_Hours_GotKeyboardFocus(object sender, RoutedEventArgs e)
+        {
+            if (firstTime1)
+            {
+                firstTime1 = false;
+                Event_Hours.Clear();
+            }
+        }
     }
 }

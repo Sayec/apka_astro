@@ -21,7 +21,6 @@ namespace WpfApp1
         public MainWindow()
         {
             InitializeComponent();
-            //List_Events.MouseDoubleClick += new RoutedEventHandler(List_Events_MouseDoubleClick);
             DataContext = this;
             Events = new List<Event> 
          {
