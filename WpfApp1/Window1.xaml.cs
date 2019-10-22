@@ -39,10 +39,10 @@ namespace WpfApp1
             StreamWriter sw = new StreamWriter(path,true);
             if (!file_empty)
             {
-                sw.Write("? \n");
-            }    
-            sw.WriteLine(temp.Name);
+                sw.WriteLine(temp.Name); 
+            }           
             sw.WriteLine(temp.Date);
+            sw.Write("? \n");
             sw.Close();
             this.Close();
            // MainWindow.List_Events.Items.Refresh();

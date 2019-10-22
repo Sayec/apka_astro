@@ -140,10 +140,33 @@ namespace WpfApp1
         private void Delete_Event_Click(object sender, RoutedEventArgs e)
         {
             int i = List_Events.SelectedIndex;
+            string temp = Events[i].Name;
+ 
+            string path = @"e:\repos\WpfApp1\WpfApp1\events.txt";
+            string s;
+            string[] Lines = File.ReadAllLines(path);
+            File.Delete(path);// Deleting the file
+            StreamWriter sw = new StreamWriter(path, true);
+            int j;
+            int k = 1;
+            for (j = 0; j < ((Events.Count())*3 - 1); j++)
+            {
+                if (String.Equals(Lines[j], temp))
+                {
+                    MessageBox.Show(Lines[j]);
+                    j += 3;
+                }
+                if (j < ((Events.Count()) * 3 - 1))
+                    sw.Write(Lines[j] + "\n");
+                else { };
+            }
+            sw.Close();
             Events.RemoveAt(i);
             List_Events.Items.Refresh();
+            MessageBox.Show(Events.Count().ToString());
+                
+            
         }
-
         private void Sort_Events_Click(object sender, RoutedEventArgs e)
         {
             Sortowanie_Events();
